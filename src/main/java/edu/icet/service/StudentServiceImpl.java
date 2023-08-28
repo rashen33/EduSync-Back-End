@@ -25,4 +25,8 @@ public class StudentServiceImpl implements StudentService{
         studentEntity.setTpNumber(student.getTpNumber());
         repository.save(studentEntity);
     }
+    @Override
+    public Iterable<StudentEntity> getStudent() {
+        return repository.findAll();
+    }
 }

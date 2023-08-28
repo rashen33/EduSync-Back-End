@@ -5,4 +5,5 @@ import edu.icet.dto.Student;
 
 public interface StudentService {
     public void setStudent(Student student);
+    public Iterable<StudentEntity> getStudent();
 }
