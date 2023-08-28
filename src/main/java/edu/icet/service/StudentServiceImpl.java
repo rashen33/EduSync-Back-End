@@ -17,12 +17,12 @@ public class StudentServiceImpl implements StudentService{
         studentEntity.setDob(student.getDob());
         studentEntity.setSex(student.getSex());
         studentEntity.setEmail(student.getEmail());
+        studentEntity.setTpNumber(student.getTpNumber());
         studentEntity.setAddress(student.getAddress());
         studentEntity.setNic(student.getNic());
         studentEntity.setSchool(student.getSchool());
         studentEntity.setDepartment(student.getDepartment());
         studentEntity.setCourse(student.getCourse());
-        studentEntity.setTpNumber(student.getTpNumber());
         repository.save(studentEntity);
     }
     @Override

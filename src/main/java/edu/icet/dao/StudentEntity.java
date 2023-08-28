@@ -20,11 +20,11 @@ public class StudentEntity {
     private String dob;
     private String sex;
     private String email;
+    private String tpNumber;
     private String address;
     private String nic;
     private String school;
     private String department;
     private String course;
-    private String tpNumber;
 
 }
