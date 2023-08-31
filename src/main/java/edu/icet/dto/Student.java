@@ -1,5 +1,6 @@
 package edu.icet.dto;
 
+import com.mysql.cj.jdbc.Blob;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -8,6 +9,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Student {
+    private String image;
     private String name;
     private String dob;
     private String sex;

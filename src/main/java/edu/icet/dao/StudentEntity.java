@@ -16,6 +16,7 @@ public class StudentEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    private String image;
     private String name;
     private String dob;
     private String sex;
@@ -26,5 +27,4 @@ public class StudentEntity {
     private String school;
     private String department;
     private String course;
-
 }
