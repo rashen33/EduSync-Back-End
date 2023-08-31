@@ -5,12 +5,13 @@ import edu.icet.dao.StudentEntity;
 import edu.icet.dto.Student;
 import edu.icet.repository.ImageRepository;
 import edu.icet.repository.StudentRepository;
+import edu.icet.util.ImageUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
-import java.util.Base64;
+import java.util.Optional;
 
 @Service
 public class StudentServiceImpl implements StudentService{
@@ -41,18 +42,17 @@ public class StudentServiceImpl implements StudentService{
 
     @Override
     public String saveImage(MultipartFile file) throws IOException {
-        if(!file.isEmpty()){
-            byte[] bytes = file.getBytes();
-            String base64Image = Base64.getEncoder().encodeToString(bytes);
-
-            ImageEntity imageEntity = new ImageEntity();
-            imageEntity.setImageData(base64Image);
-            imageRepository.save(imageEntity);
-            return "Image Uploaded";
-
-        }
-        return "Image upload fail";
+       imageRepository.save(ImageEntity.builder()
+                .name(file.getOriginalFilename())
+                .type(file.getContentType())
+                .imageData(ImageUtils.compressImage(file.getBytes())).build());
+        return "file uploaded successfully : " + file.getOriginalFilename();
     }
 
+    @Override
+    public byte[] getImage(String fileName) {
+        Optional<ImageEntity> dbImageData = imageRepository.findByName(fileName);
+        return ImageUtils.decompressImage(dbImageData.get().getImageData());
+    }
 
 }
