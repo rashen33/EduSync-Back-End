@@ -5,21 +5,18 @@ import edu.icet.dao.StudentEntity;
 import edu.icet.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
-
-import java.io.IOException;
-
 
 @RestController
 @CrossOrigin
+@RequestMapping("/student")
 public class StudentController {
     @Autowired
     StudentService studentService;
-    @PostMapping("/student")
+    @PostMapping
     public void setStudent(@RequestBody Student student){
         studentService.setStudent(student);
     }
-    @GetMapping("/student")
+    @GetMapping
     public Iterable<StudentEntity> getStudent(){
         return studentService.getStudent();
     }

@@ -11,12 +11,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Image {
-
-    private Long id;
-
-    private String name;
-    private String type;
-    @Lob
-    @Column(name = "imagedata",length = 1000)
-    private byte[] imageData;
+    private String imageData;
+    private String imageName;
+    private String imageType;
 }
