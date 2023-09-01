@@ -39,20 +39,4 @@ public class StudentServiceImpl implements StudentService{
     public Iterable<StudentEntity> getStudent() {
         return repository.findAll();
     }
-
-    @Override
-    public String saveImage(MultipartFile file) throws IOException {
-       imageRepository.save(ImageEntity.builder()
-                .name(file.getOriginalFilename())
-                .type(file.getContentType())
-                .imageData(ImageUtils.compressImage(file.getBytes())).build());
-        return "file uploaded successfully : " + file.getOriginalFilename();
-    }
-
-    @Override
-    public byte[] getImage(String fileName) {
-        Optional<ImageEntity> dbImageData = imageRepository.findByName(fileName);
-        return ImageUtils.decompressImage(dbImageData.get().getImageData());
-    }
-
 }

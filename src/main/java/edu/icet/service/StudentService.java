@@ -2,7 +2,6 @@ package edu.icet.service;
 
 import edu.icet.dao.StudentEntity;
 import edu.icet.dto.Student;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
@@ -10,8 +9,4 @@ import java.io.IOException;
 public interface StudentService {
     public void setStudent(Student student);
     public Iterable<StudentEntity> getStudent();
-    public String saveImage(MultipartFile file) throws IOException;
-
-    public byte[] getImage(String fileName);
-
 }

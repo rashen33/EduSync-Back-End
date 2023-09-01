@@ -1,0 +1,9 @@
+
+€
+java:S1488<"^Immediately return this expression instead of assigning it to the temporary variable "images".(öİõîÿÿÿÿÿ8¬’ÏÙ¤1
+x
+java:S3655<"VCall "dbImageData.isPresent()" or "!dbImageData.isEmpty()" before accessing the value.(öİõîÿÿÿÿÿ8Ğ®ËÙ¤1
+a
+java:S18542"?Remove this useless assignment to local variable "imageEntity".(åÑÜùÿÿÿÿ8–³¡Ø¤1
+R
+java:S14812"0Remove this unused "imageEntity" local variable.(åÑÜùÿÿÿÿ8—³¡Ø¤1
