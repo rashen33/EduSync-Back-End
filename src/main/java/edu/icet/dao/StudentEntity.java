@@ -16,7 +16,6 @@ public class StudentEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private String image;
     private String name;
     private String dob;
     private String sex;
