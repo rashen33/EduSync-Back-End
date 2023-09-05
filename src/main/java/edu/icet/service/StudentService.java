@@ -8,4 +8,6 @@ public interface StudentService {
     public void setStudent(Student student);
     public List<Student> getStudent();
     public List<Student> searchStudent(String name);
+
+    void deleteStudent(Long id);
 }

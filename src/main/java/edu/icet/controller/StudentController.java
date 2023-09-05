@@ -4,6 +4,7 @@ import edu.icet.dto.Student;
 import edu.icet.dao.StudentEntity;
 import edu.icet.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -25,6 +26,11 @@ public class StudentController {
     @GetMapping("/{name}")
     public List<Student> searchStudent(@PathVariable String name){
         return studentService.searchStudent(name);
+    }
+    @DeleteMapping("delete/{id}")
+    public ResponseEntity<String> deleteStudent(@PathVariable Long id){
+        studentService.deleteStudent(id);
+        return ResponseEntity.ok("User deleted successfully!.");
     }
 
 }

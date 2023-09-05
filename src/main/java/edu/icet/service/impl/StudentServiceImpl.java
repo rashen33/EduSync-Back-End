@@ -70,6 +70,8 @@ public class StudentServiceImpl implements StudentService {
 
         while(iterator.hasNext()){
             StudentEntity studentDao = iterator.next();
+
+            //Model mapping
             Student studentDto = Student.builder()
                     .name(studentDao.getName())
                     .dob(studentDao.getDob())
@@ -86,6 +88,11 @@ public class StudentServiceImpl implements StudentService {
             searchedStudents.add(studentDto);
         }
         return searchedStudents;
+    }
+
+    @Override
+    public void deleteStudent(Long id) {
+        repository.deleteById(id);
     }
 
 }
