@@ -7,6 +7,10 @@ import edu.icet.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
 @Service
 public class StudentServiceImpl implements StudentService {
     @Autowired
@@ -28,8 +32,32 @@ public class StudentServiceImpl implements StudentService {
         repository.save(studentEntity);
     }
     @Override
-    public Iterable<StudentEntity> getStudent() {
-        return repository.findAll();
+    public List<Student> getStudent() {
+        Iterable<StudentEntity> studentList = repository.findAll();
+
+        Iterator<StudentEntity> iterator = studentList.iterator();
+
+        List<Student> studentModelList = new ArrayList<>();
+
+        while(iterator.hasNext()){
+            StudentEntity studentDao = iterator.next();
+            Student studentDto = Student.builder()
+                    .name(studentDao.getName())
+                    .dob(studentDao.getDob())
+                    .sex(studentDao.getSex())
+                    .email(studentDao.getEmail())
+                    .tpNumber(studentDao.getTpNumber())
+                    .address(studentDao.getAddress())
+                    .nic(studentDao.getNic())
+                    .school(studentDao.getSchool())
+                    .department(studentDao.getDepartment())
+                    .course(studentDao.getCourse())
+                    .build();
+
+            studentModelList.add(studentDto);
+        }
+
+        return studentModelList;
     }
 
     @Override
