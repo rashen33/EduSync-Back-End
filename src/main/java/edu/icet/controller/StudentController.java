@@ -23,7 +23,7 @@ public class StudentController {
         return studentService.getStudent();
     }
     @GetMapping("/{name}")
-    public Iterable<StudentEntity> searchStudent(@PathVariable String name){
+    public List<Student> searchStudent(@PathVariable String name){
         return studentService.searchStudent(name);
     }
 
