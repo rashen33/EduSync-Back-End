@@ -1,26 +1,17 @@
 package edu.icet.service.impl;
 
-import edu.icet.dao.ImageEntity;
 import edu.icet.dao.StudentEntity;
 import edu.icet.dto.Student;
-import edu.icet.repository.ImageRepository;
 import edu.icet.repository.StudentRepository;
 import edu.icet.service.StudentService;
-import edu.icet.util.ImageUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
-
-import java.io.IOException;
-import java.util.Optional;
 
 @Service
 public class StudentServiceImpl implements StudentService {
     @Autowired
     StudentRepository repository;
 
-    @Autowired
-    ImageRepository imageRepository;
     @Override
     public void setStudent(Student student) {
         StudentEntity studentEntity = new StudentEntity();
@@ -40,4 +31,10 @@ public class StudentServiceImpl implements StudentService {
     public Iterable<StudentEntity> getStudent() {
         return repository.findAll();
     }
+
+    @Override
+    public Iterable<StudentEntity> searchStudent(String name) {
+        return repository.findByName(name);
+    }
+
 }
