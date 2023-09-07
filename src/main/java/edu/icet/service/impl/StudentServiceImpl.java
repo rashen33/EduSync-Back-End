@@ -16,12 +16,6 @@ import java.util.List;
 public class StudentServiceImpl  implements StudentService {
     @Autowired
     StudentRepository repository;
-//    private ModelMapper mapper;
-//
-//    @Bean
-//    public void setup() {
-//        this.mapper = new ModelMapper();
-//    }
 
     @Override
     public void setNewStudent(Student newStudent) {
@@ -55,36 +49,26 @@ public class StudentServiceImpl  implements StudentService {
     }
 
     @Override
-    public List<Student> retrieveStudentByUserName(String userName) {
-        List<Student> retrivedStudentList = new ArrayList<>();
-        Iterator<StudentEntity> iterator = repository.findByUserName(userName).iterator();
-
-        while(iterator.hasNext()){
-            StudentEntity regStudentDao = iterator.next();
-            Student regStudentDto = Student.builder()
-                    .userName(regStudentDao.getUserName())
-                    .password(regStudentDao.getPassword())
-                    .build();
-            retrivedStudentList.add(regStudentDto);
-        }
-        return retrivedStudentList;
+    public Iterable<StudentEntity> retrieveStudentByUserName(String userName) {
+        return repository.findByUserName(userName);
     }
 
-//    @Override
-//    public void setStudent(Student student) {
-//        StudentEntity studentEntity = new StudentEntity();
-//        studentEntity.setName(student.getName());
-//        studentEntity.setDob(student.getDob());
-//        studentEntity.setSex(student.getSex());
-//        studentEntity.setEmail(student.getEmail());
-//        studentEntity.setTpNumber(student.getTpNumber());
-//        studentEntity.setAddress(student.getAddress());
-//        studentEntity.setNic(student.getNic());
-//        studentEntity.setSchool(student.getSchool());
-//        studentEntity.setDepartment(student.getDepartment());
-//        studentEntity.setCourse(student.getCourse());
-//        repository.save(studentEntity);
-//    }
+    @Override
+    public void setStudentTotheRegister(Long id, Student student){
+
+        StudentEntity studentEntity = repository.findById(id).get();
+        studentEntity.setName(student.getName());
+        studentEntity.setDob(student.getDob());
+        studentEntity.setSex(student.getSex());
+        studentEntity.setEmail(student.getEmail());
+        studentEntity.setTpNumber(student.getTpNumber());
+        studentEntity.setAddress(student.getAddress());
+        studentEntity.setNic(student.getNic());
+        studentEntity.setSchool(student.getSchool());
+        studentEntity.setDepartment(student.getDepartment());
+        studentEntity.setCourse(student.getCourse());
+        repository.save(studentEntity);
+    }
 //    @Override
 //    public List<Student> getStudent() {
 //        Iterable<StudentEntity> studentList = repository.findAll();

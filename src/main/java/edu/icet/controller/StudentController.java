@@ -22,15 +22,15 @@ public class StudentController {
     public List<Student> getRegisteredStudent(){
         return studentService.getRegisteredStudent();
     }
-
     @GetMapping("/{userName}")
-    public List<Student> retrieveStudentByName(@PathVariable String userName){
+    public Iterable<StudentEntity> retrieveStudentByName(@PathVariable String userName){
         return studentService.retrieveStudentByUserName(userName);
     }
-//    @PostMapping
-//    public void setStudent(@RequestBody Student student){
-//        studentService.setStudent(student);
-//    }
+    @PutMapping("/{id}")
+    public void setStudentTotheRegister(@PathVariable Long id, @RequestBody Student student){
+        studentService.setStudentTotheRegister(id,student);
+    }
+
 //    @GetMapping
 //    public List<Student> getStudent(){
 //        return studentService.getStudent();
