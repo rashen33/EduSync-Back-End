@@ -5,7 +5,7 @@ import edu.icet.dto.Student;
 import edu.icet.repository.StudentRepository;
 import edu.icet.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.info.ProjectInfoProperties;
+import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -13,9 +13,15 @@ import java.util.Iterator;
 import java.util.List;
 
 @Service
-public class StudentServiceImpl implements StudentService {
+public class StudentServiceImpl  implements StudentService {
     @Autowired
     StudentRepository repository;
+//    private ModelMapper mapper;
+//
+//    @Bean
+//    public void setup() {
+//        this.mapper = new ModelMapper();
+//    }
 
     @Override
     public void setNewStudent(Student newStudent) {
@@ -46,6 +52,22 @@ public class StudentServiceImpl implements StudentService {
             regStudentModelList.add(regStudentDto);
         }
         return regStudentModelList;
+    }
+
+    @Override
+    public List<Student> retrieveStudentByUserName(String userName) {
+        List<Student> retrivedStudentList = new ArrayList<>();
+        Iterator<StudentEntity> iterator = repository.findByUserName(userName).iterator();
+
+        while(iterator.hasNext()){
+            StudentEntity regStudentDao = iterator.next();
+            Student regStudentDto = Student.builder()
+                    .userName(regStudentDao.getUserName())
+                    .password(regStudentDao.getPassword())
+                    .build();
+            retrivedStudentList.add(regStudentDto);
+        }
+        return retrivedStudentList;
     }
 
 //    @Override

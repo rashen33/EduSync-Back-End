@@ -1,5 +1,6 @@
 package edu.icet.controller;
 
+import edu.icet.dao.StudentEntity;
 import edu.icet.dto.Student;
 import edu.icet.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +21,11 @@ public class StudentController {
     @GetMapping
     public List<Student> getRegisteredStudent(){
         return studentService.getRegisteredStudent();
+    }
+
+    @GetMapping("/{userName}")
+    public List<Student> retrieveStudentByName(@PathVariable String userName){
+        return studentService.retrieveStudentByUserName(userName);
     }
 //    @PostMapping
 //    public void setStudent(@RequestBody Student student){
