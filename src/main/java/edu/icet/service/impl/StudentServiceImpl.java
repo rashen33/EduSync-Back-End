@@ -5,6 +5,7 @@ import edu.icet.dto.Student;
 import edu.icet.repository.StudentRepository;
 import edu.icet.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.info.ProjectInfoProperties;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -22,6 +23,29 @@ public class StudentServiceImpl implements StudentService {
         studentEntityNS.setUserName(newStudent.getUserName());
         studentEntityNS.setStudentEmail(newStudent.getStudentEmail());
         studentEntityNS.setPassword(newStudent.getPassword());
+
+        repository.save(studentEntityNS);
+    }
+
+    @Override
+    public List<Student> getRegisteredStudent() {
+        Iterable<StudentEntity> regStudentList = repository.findAll();
+
+        Iterator<StudentEntity> iterator = regStudentList.iterator();
+
+        List<Student> regStudentModelList = new ArrayList<>();
+
+        while(iterator.hasNext()){
+            StudentEntity regStudentDao = iterator.next();
+            Student regStudentDto = Student.builder()
+                    .userName(regStudentDao.getUserName())
+                    .studentEmail(regStudentDao.getStudentEmail())
+                    .password(regStudentDao.getPassword())
+                    .build();
+
+            regStudentModelList.add(regStudentDto);
+        }
+        return regStudentModelList;
     }
 
 //    @Override

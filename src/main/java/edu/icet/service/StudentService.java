@@ -6,6 +6,7 @@ import java.util.List;
 
 public interface StudentService {
     void setNewStudent(Student newStudent);
+    List<Student> getRegisteredStudent();
 //    public void setStudent(Student student);
 //    public List<Student> getStudent();
 //    public List<Student> searchStudent(String name);

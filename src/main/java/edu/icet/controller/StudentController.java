@@ -17,6 +17,10 @@ public class StudentController {
     public void setNewStudent(@RequestBody Student newStudent){
         studentService.setNewStudent(newStudent);
     }
+    @GetMapping
+    public List<Student> getRegisteredStudent(){
+        return studentService.getRegisteredStudent();
+    }
 //    @PostMapping
 //    public void setStudent(@RequestBody Student student){
 //        studentService.setStudent(student);
