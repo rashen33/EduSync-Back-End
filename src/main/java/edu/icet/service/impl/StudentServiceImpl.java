@@ -17,82 +17,90 @@ public class StudentServiceImpl implements StudentService {
     StudentRepository repository;
 
     @Override
-    public void setStudent(Student student) {
-        StudentEntity studentEntity = new StudentEntity();
-        studentEntity.setName(student.getName());
-        studentEntity.setDob(student.getDob());
-        studentEntity.setSex(student.getSex());
-        studentEntity.setEmail(student.getEmail());
-        studentEntity.setTpNumber(student.getTpNumber());
-        studentEntity.setAddress(student.getAddress());
-        studentEntity.setNic(student.getNic());
-        studentEntity.setSchool(student.getSchool());
-        studentEntity.setDepartment(student.getDepartment());
-        studentEntity.setCourse(student.getCourse());
-        repository.save(studentEntity);
-    }
-    @Override
-    public List<Student> getStudent() {
-        Iterable<StudentEntity> studentList = repository.findAll();
-
-        Iterator<StudentEntity> iterator = studentList.iterator();
-
-        List<Student> studentModelList = new ArrayList<>();
-
-        while(iterator.hasNext()){
-            StudentEntity studentDao = iterator.next();
-            Student studentDto = Student.builder()
-                    .name(studentDao.getName())
-                    .dob(studentDao.getDob())
-                    .sex(studentDao.getSex())
-                    .email(studentDao.getEmail())
-                    .tpNumber(studentDao.getTpNumber())
-                    .address(studentDao.getAddress())
-                    .nic(studentDao.getNic())
-                    .school(studentDao.getSchool())
-                    .department(studentDao.getDepartment())
-                    .course(studentDao.getCourse())
-                    .build();
-
-            studentModelList.add(studentDto);
-        }
-
-        return studentModelList;
+    public void setNewStudent(Student newStudent) {
+        StudentEntity studentEntityNS = new StudentEntity();
+        studentEntityNS.setUserName(newStudent.getUserName());
+        studentEntityNS.setStudentEmail(newStudent.getStudentEmail());
+        studentEntityNS.setPassword(newStudent.getPassword());
     }
 
-    @Override
-    public List<Student> searchStudent(String name) {
-        Iterable<StudentEntity> studentList = repository.findByName(name);
-
-        Iterator<StudentEntity> iterator = studentList.iterator();
-
-        List<Student> searchedStudents = new ArrayList<>();
-
-        while(iterator.hasNext()){
-            StudentEntity studentDao = iterator.next();
-
-            //Model mapping
-            Student studentDto = Student.builder()
-                    .name(studentDao.getName())
-                    .dob(studentDao.getDob())
-                    .sex(studentDao.getSex())
-                    .email(studentDao.getEmail())
-                    .tpNumber(studentDao.getTpNumber())
-                    .address(studentDao.getAddress())
-                    .nic(studentDao.getNic())
-                    .school(studentDao.getSchool())
-                    .department(studentDao.getDepartment())
-                    .course(studentDao.getCourse())
-                    .build();
-
-            searchedStudents.add(studentDto);
-        }
-        return searchedStudents;
-    }
-
-    @Override
-    public void deleteStudent(Long id) {
-        repository.deleteById(id);
-    }
+//    @Override
+//    public void setStudent(Student student) {
+//        StudentEntity studentEntity = new StudentEntity();
+//        studentEntity.setName(student.getName());
+//        studentEntity.setDob(student.getDob());
+//        studentEntity.setSex(student.getSex());
+//        studentEntity.setEmail(student.getEmail());
+//        studentEntity.setTpNumber(student.getTpNumber());
+//        studentEntity.setAddress(student.getAddress());
+//        studentEntity.setNic(student.getNic());
+//        studentEntity.setSchool(student.getSchool());
+//        studentEntity.setDepartment(student.getDepartment());
+//        studentEntity.setCourse(student.getCourse());
+//        repository.save(studentEntity);
+//    }
+//    @Override
+//    public List<Student> getStudent() {
+//        Iterable<StudentEntity> studentList = repository.findAll();
+//
+//        Iterator<StudentEntity> iterator = studentList.iterator();
+//
+//        List<Student> studentModelList = new ArrayList<>();
+//
+//        while(iterator.hasNext()){
+//            StudentEntity studentDao = iterator.next();
+//            Student studentDto = Student.builder()
+//                    .name(studentDao.getName())
+//                    .dob(studentDao.getDob())
+//                    .sex(studentDao.getSex())
+//                    .email(studentDao.getEmail())
+//                    .tpNumber(studentDao.getTpNumber())
+//                    .address(studentDao.getAddress())
+//                    .nic(studentDao.getNic())
+//                    .school(studentDao.getSchool())
+//                    .department(studentDao.getDepartment())
+//                    .course(studentDao.getCourse())
+//                    .build();
+//
+//            studentModelList.add(studentDto);
+//        }
+//
+//        return studentModelList;
+//    }
+//
+//    @Override
+//    public List<Student> searchStudent(String name) {
+//        Iterable<StudentEntity> studentList = repository.findByName(name);
+//
+//        Iterator<StudentEntity> iterator = studentList.iterator();
+//
+//        List<Student> searchedStudents = new ArrayList<>();
+//
+//        while(iterator.hasNext()){
+//            StudentEntity studentDao = iterator.next();
+//
+//            //Model mapping
+//            Student studentDto = Student.builder()
+//                    .name(studentDao.getName())
+//                    .dob(studentDao.getDob())
+//                    .sex(studentDao.getSex())
+//                    .email(studentDao.getEmail())
+//                    .tpNumber(studentDao.getTpNumber())
+//                    .address(studentDao.getAddress())
+//                    .nic(studentDao.getNic())
+//                    .school(studentDao.getSchool())
+//                    .department(studentDao.getDepartment())
+//                    .course(studentDao.getCourse())
+//                    .build();
+//
+//            searchedStudents.add(studentDto);
+//        }
+//        return searchedStudents;
+//    }
+//
+//    @Override
+//    public void deleteStudent(Long id) {
+//        repository.deleteById(id);
+//    }
 
 }
