@@ -10,10 +10,10 @@ public interface StudentService {
     List<Student> getRegisteredStudent();
     Iterable<StudentEntity> retrieveStudentByUserName(String userName);
 
-    public void setStudentTotheRegister(Long id, Student student);
+    public void setStudentToTheRegister(Long id, Student student);
 
 //    public List<Student> getStudent();
-//    public List<Student> searchStudent(String name);
+    public List<Student> searchStudent(String name);
 //
 //    void deleteStudent(Long id);
 }

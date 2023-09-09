@@ -1,0 +1,7 @@
+
+l
+java:S3655;"PCall "Optional#isPresent()" or "!Optional#isEmpty()" before accessing the value.(Å‚²j8±Åöý¦1
+X	java:S125I"<This block of commented-out lines of code should be removed.(¡Ï¡8ð‡¾þ¦1
+^	java:S125„"<This block of commented-out lines of code should be removed.(þ€‹­üÿÿÿÿ8µšÄÿ¦1
+e
+java:S1128"HRemove this unused import 'org.springframework.context.annotation.Bean'.(‚î‰Þ8Ò¬Õ˜§1
