@@ -31,7 +31,7 @@ public class StudentController {
         studentService.setStudentToTheRegister(id,student);
     }
     @GetMapping("/search/{name}")
-    public List<Student> searchStudent(@PathVariable String name){
+    public Iterable<StudentEntity> searchStudent(@PathVariable String name){
         return studentService.searchStudent(name);
     }
     @DeleteMapping("delete/{id}")
@@ -39,9 +39,9 @@ public class StudentController {
         studentService.deleteStudent(id);
         return ResponseEntity.ok("User deleted successfully!.");
     }
-    //    @GetMapping
-//    public List<Student> getStudent(){
-//        return studentService.getStudent();
-//    }
+    @GetMapping("/all")
+    public Iterable<StudentEntity> getStudent(){
+        return studentService.getStudent();
+    }
 
 }

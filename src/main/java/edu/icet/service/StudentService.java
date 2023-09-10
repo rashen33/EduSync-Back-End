@@ -14,9 +14,9 @@ public interface StudentService {
 
     public void setStudentToTheRegister(Long id, Student student);
 
-    List<Student> searchStudent(String name);
+    Iterable<StudentEntity> searchStudent(String name);
 
     public void deleteStudent(Long id);
 
-//    public List<Student> getStudent();
+    public Iterable<StudentEntity> getStudent();
 }

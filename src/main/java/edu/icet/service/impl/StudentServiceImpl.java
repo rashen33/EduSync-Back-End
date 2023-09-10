@@ -5,7 +5,6 @@ import edu.icet.dto.Student;
 import edu.icet.repository.StudentRepository;
 import edu.icet.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -26,7 +25,6 @@ public class StudentServiceImpl  implements StudentService {
 
         repository.save(studentEntityNS);
     }
-
     @Override
     public List<Student> getRegisteredStudent() {
         Iterable<StudentEntity> regStudentList = repository.findAll();
@@ -47,12 +45,10 @@ public class StudentServiceImpl  implements StudentService {
         }
         return regStudentModelList;
     }
-
     @Override
     public Iterable<StudentEntity> retrieveStudentByUserName(String userName) {
         return repository.findByUserName(userName);
     }
-
     @Override
     public void setStudentToTheRegister(Long id, Student student){
 
@@ -69,67 +65,18 @@ public class StudentServiceImpl  implements StudentService {
         studentEntity.setCourse(student.getCourse());
         repository.save(studentEntity);
     }
-//    @Override
-//    public List<Student> getStudent() {
-//        Iterable<StudentEntity> studentList = repository.findAll();
-//
-//        Iterator<StudentEntity> iterator = studentList.iterator();
-//
-//        List<Student> studentModelList = new ArrayList<>();
-//
-//        while(iterator.hasNext()){
-//            StudentEntity studentDao = iterator.next();
-//            Student studentDto = Student.builder()
-//                    .name(studentDao.getName())
-//                    .dob(studentDao.getDob())
-//                    .sex(studentDao.getSex())
-//                    .email(studentDao.getEmail())
-//                    .tpNumber(studentDao.getTpNumber())
-//                    .address(studentDao.getAddress())
-//                    .nic(studentDao.getNic())
-//                    .school(studentDao.getSchool())
-//                    .department(studentDao.getDepartment())
-//                    .course(studentDao.getCourse())
-//                    .build();
-//
-//            studentModelList.add(studentDto);
-//        }
-//
-//        return studentModelList;
-//    }
-//
     @Override
-    public List<Student> searchStudent(String name) {
-        Iterable<StudentEntity> studentList = repository.findByName(name);
-
-        Iterator<StudentEntity> iterator = studentList.iterator();
-
-        List<Student> searchedStudents = new ArrayList<>();
-
-        while(iterator.hasNext()){
-            StudentEntity studentDao = iterator.next();
-
-            //Model mapping
-            Student studentDto = Student.builder()
-                    .name(studentDao.getName())
-                    .dob(studentDao.getDob())
-                    .sex(studentDao.getSex())
-                    .email(studentDao.getEmail())
-                    .tpNumber(studentDao.getTpNumber())
-                    .address(studentDao.getAddress())
-                    .nic(studentDao.getNic())
-                    .school(studentDao.getSchool())
-                    .department(studentDao.getDepartment())
-                    .course(studentDao.getCourse())
-                    .build();
-
-            searchedStudents.add(studentDto);
-        }
-        return searchedStudents;
+    public Iterable<StudentEntity> searchStudent(String name) {
+        return repository.findByName(name);
     }
     @Override
     public void deleteStudent(Long id) {
         repository.deleteById(id);
     }
+    @Override
+    public Iterable<StudentEntity> getStudent() {
+        return repository.findAll();
+    }
+
 
 }
