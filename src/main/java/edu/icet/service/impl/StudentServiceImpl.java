@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class StudentServiceImpl  implements StudentService {
@@ -25,6 +26,7 @@ public class StudentServiceImpl  implements StudentService {
 
         repository.save(studentEntityNS);
     }
+
     @Override
     public List<Student> getRegisteredStudent() {
         Iterable<StudentEntity> regStudentList = repository.findAll();
@@ -49,6 +51,7 @@ public class StudentServiceImpl  implements StudentService {
     public Iterable<StudentEntity> retrieveStudentByUserName(String userName) {
         return repository.findByUserName(userName);
     }
+
     @Override
     public void setStudentToTheRegister(Long id, Student student){
 
@@ -65,18 +68,25 @@ public class StudentServiceImpl  implements StudentService {
         studentEntity.setCourse(student.getCourse());
         repository.save(studentEntity);
     }
+
     @Override
     public Iterable<StudentEntity> searchStudent(String name) {
         return repository.findByName(name);
     }
+
     @Override
     public void deleteStudent(Long id) {
         repository.deleteById(id);
     }
+
     @Override
     public Iterable<StudentEntity> getStudent() {
         return repository.findAll();
     }
 
+    @Override
+    public Optional<StudentEntity> retrieveStudentById(Long id) {
+        return repository.findById(id);
+    }
 
 }
