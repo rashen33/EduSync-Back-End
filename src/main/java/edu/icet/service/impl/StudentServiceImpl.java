@@ -127,10 +127,9 @@ public class StudentServiceImpl  implements StudentService {
         }
         return searchedStudents;
     }
-//
-//    @Override
-//    public void deleteStudent(Long id) {
-//        repository.deleteById(id);
-//    }
+    @Override
+    public void deleteStudent(Long id) {
+        repository.deleteById(id);
+    }
 
 }
